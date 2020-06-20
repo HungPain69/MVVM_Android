@@ -43,11 +43,18 @@ public class MainFragment extends Fragment {
         dollarText = getView().findViewById(R.id.dollarText);
         resultText = getView().findViewById(R.id.resultText);
         convertButton = getView().findViewById(R.id.convertButton);
+
+        resultText.setText(mViewModel.getResult().toString());
         convertButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
-                
+                if (!dollarText.getText().toString().equals("")) {
+                    mViewModel.setAmount(dollarText.getText().toString());
+                    resultText.setText(mViewModel.getResult().toString());}
+                else {
+                    resultText.setText("No Value");
+                }
             }
         });
 
