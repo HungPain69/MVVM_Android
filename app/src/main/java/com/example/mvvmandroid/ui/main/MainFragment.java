@@ -11,12 +11,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.mvvmandroid.R;
 
 public class MainFragment extends Fragment {
 
     private MainViewModel mViewModel;
+    private EditText dollarText;
+    private TextView resultText;
+    private Button convertButton;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -34,6 +40,17 @@ public class MainFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
+        dollarText = getView().findViewById(R.id.dollarText);
+        resultText = getView().findViewById(R.id.resultText);
+        convertButton = getView().findViewById(R.id.convertButton);
+        convertButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
     }
 
 }
