@@ -1,5 +1,6 @@
 package com.example.mvvmandroid.ui.main;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -44,14 +45,24 @@ public class MainFragment extends Fragment {
         resultText = getView().findViewById(R.id.resultText);
         convertButton = getView().findViewById(R.id.convertButton);
 
-        resultText.setText(mViewModel.getResult().toString());
+
+
+        final Observer<String> resultObserver = new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable final String result) {
+                resultText.setText(result);
+            }
+        };
+
+        mViewModel.getResult().observe(this, resultObserver);
         convertButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
                 if (!dollarText.getText().toString().equals("")) {
                     mViewModel.setAmount(dollarText.getText().toString());
-                    resultText.setText(mViewModel.getResult().toString());}
+
+                }
                 else {
                     resultText.setText("No Value");
                 }
